@@ -1,1 +1,1 @@
-[{"accNum":1649515876577,"name":"mohamed","balance":"2500","transaction":[]},{"accNum":1649515896491,"name":"aboelnour","balance":"2500","transaction":[]}]
+[{"accNum":1649632149210,"name":"mohamed","balance":470,"transaction":[{"withDraw":100,"type":"add"},{"withDraw":120,"type":"add"}]}]

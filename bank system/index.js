@@ -6,7 +6,7 @@ yargs.command({
     builder: {
         accNum: { default: Date.now() },
         name: { type: "string", demandOption: true },
-        balance: { type: "string", demandOption: true },
+        balance: { type: "number", demandOption: true },
         transaction: { default: [] },
     },
     handler: (argv) => customers.addCustomer(argv),
@@ -45,5 +45,15 @@ yargs.command({
         searchVal: { type: "string", demandOption: true },
     },
     handler: (argv) => customers.deleteCustomer(argv.searchKey, argv.searchVal),
+});
+yargs.command({
+    command: "addTransaction",
+    describe: "add transactions",
+    builder: {
+        withDraw: { type: "number", demandOption: true },
+        type: { type: "string", demandOption: true },
+        accNum: { type: "string", demandOption: true },
+    },
+    handler: (argv) => customers.addtransaction(argv),
 });
 yargs.argv;

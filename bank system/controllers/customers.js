@@ -4,7 +4,13 @@ const createCustomerObject = (data) => {
         accNum: data.accNum,
         name: data.name,
         balance: data.balance,
-        transaction: data.transaction,
+        transaction: [],
+    };
+};
+const createTransactionObject = (data) => {
+    return {
+        withDraw: data.withDraw,
+        type: data.type,
     };
 };
 const printCustomers = (customer) => {
@@ -46,7 +52,7 @@ const showCustomers = () => {
 const showCustomer = (searchKey, searchVal) => {
     try {
         const allCustomers = deal.readDataFromJSON("customers.json");
-        let customer = searchInCustomers(
+        const customer = searchInCustomers(
             allCustomers,
             searchKey,
             searchVal,
@@ -80,9 +86,26 @@ const editCustomer = (data) => {
 const deleteCustomer = (searchKey, searchVal) => {
     try {
         const allCustomers = deal.readDataFromJSON("customers.json");
-        let customer = searchInCustomers(allCustomers, searchKey, searchVal);
+        const customer = searchInCustomers(allCustomers, searchKey, searchVal);
         if (customer == -1) throw new Error("customer not found");
         allCustomers.splice(customer, 1);
+        deal.writeDataToJSON("customers.json", allCustomers);
+    } catch (e) {
+        console.log(e.message);
+    }
+};
+const addtransaction = (data) => {
+    try {
+        const allCustomers = deal.readDataFromJSON("customers.json");
+        const customerIndex = searchInCustomers(
+            allCustomers,
+            "accNum",
+            data.accNum
+        );
+        const transaction = createTransactionObject(data);
+        if (transaction.type == "add")
+            allCustomers[customerIndex].balance += transaction.withDraw;
+        allCustomers[customerIndex].transaction.push(transaction);
         deal.writeDataToJSON("customers.json", allCustomers);
     } catch (e) {
         console.log(e.message);
@@ -95,4 +118,5 @@ module.exports = {
     showCustomer,
     editCustomer,
     deleteCustomer,
+    addtransaction,
 };
