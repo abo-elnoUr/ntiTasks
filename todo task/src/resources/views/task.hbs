@@ -1,0 +1,22 @@
+{{>header}}
+{{>navbar}}
+<section class="container my-3">
+    <h4 class="text-center">tasks</h4>
+    <div class="mx-auto w-50">
+        <ol style="cursor: pointer;" class="list-group list-group-numbered">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <input class="form-check-input mx-1 " name="status" type="checkbox" {{#if task.status}}checked{{/if}}>
+                <div class="ms-2 me-auto">
+                    <div><span class="fw-bold">title:</span> {{ task.title }}</div>
+                    <span class="fw-bold">content:</span> {{task.content}}
+                    <br>
+                    <small class="muted"><span class="fw-bold">date:</span> {{task.date}}</small>
+                </div>
+                <div class="me-2 ms-auto">
+                    <div><span class="fw-bold">status:</span> {{ task.status }}</div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+{{>footer}}

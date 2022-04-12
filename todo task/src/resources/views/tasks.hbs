@@ -1,0 +1,29 @@
+{{>header}}
+{{>navbar}}
+<section class="container my-3">
+    <h4 class="text-center">tasks</h4>
+    <div class="mx-auto w-50">
+        <ol style="cursor: pointer;" class="list-group list-group-numbered">
+            {{#each allTasks}}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <input class="form-check-input mx-1 " name="status" type="checkbox" {{#if this.status}}checked{{/if}}>
+                <div class="ms-2 me-auto">
+                    <div><span class="fw-bold">title:</span> {{ this.title }}</div>
+                    <span class="fw-bold">content:</span> {{this.content}}
+                    <br>
+                    <small class="muted"><span class="fw-bold">date:</span> {{this.date}}</small>
+                </div>
+                <div class="me-2 ms-auto">
+                    <div><span class="fw-bold">status:</span> {{ this.status }}</div>
+                    <a href="/task/{{this.id}}" class="btn btn-outline-primary">show</a>
+                    <a href="/updateTask/{{this.id}}" class="btn btn-outline-info">Edit</a>
+                    <a href="/deleteTask/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+
+</section>
+{{>footer}}
+{{!-- value="{{this.status}}" --}}

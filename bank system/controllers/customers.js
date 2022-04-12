@@ -104,7 +104,7 @@ const addtransaction = (data) => {
         );
         const transaction = createTransactionObject(data);
         if (transaction.type == "add")
-            allCustomers[customerIndex].balance += transaction.withDraw;
+            allCustomers[customerIndex].balance = +allCustomers[customerIndex].balance + +transaction.withDraw;
         allCustomers[customerIndex].transaction.push(transaction);
         deal.writeDataToJSON("customers.json", allCustomers);
     } catch (e) {
